@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="Grod.WelcomeWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Grod"
+	Height="600"
+	Width="800">
+	<Grid>
+		<Button
+			Content="New Post"
+			Grid.Column="0"
+			Grid.Row="0"
+			HorizontalAlignment="Left"
+			VerticalAlignment="Top"
+			Margin="56,44,0,0"
+			Height="80"
+			Width="200"
+			Name="btnNewPost"
+			Click="btnNewPost_Click"
+			IsDefault="False"></Button>
+	</Grid>
+</Window>

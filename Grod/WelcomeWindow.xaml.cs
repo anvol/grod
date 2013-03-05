@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Andrey
- * Date: 05.03.2013
- * Time: 20:37
+ * Date: 03/05/2013
+ * Time: 21:13
  * 
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
@@ -19,13 +19,22 @@ using System.Windows.Media;
 namespace Grod
 {
 	/// <summary>
-	/// Interaction logic for Window1.xaml
+	/// Interaction logic for WelcomeWindow.xaml
 	/// </summary>
-	public partial class Window1 : Window
+	public partial class WelcomeWindow : Window
 	{
-		public Window1()
+		public WelcomeWindow()
 		{
 			InitializeComponent();
+		}
+		
+		void btnNewPost_Click(object sender, RoutedEventArgs e)
+		{
+			var editor = new EditorWindow();
+			
+			editor.Owner = this;
+			editor.ShowActivated = true;
+			editor.Show();
 		}
 	}
 }
