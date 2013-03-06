@@ -19,9 +19,7 @@ namespace Grod
 		private string _htmlText;
 		
 		public string Title {get; set;}
-		public string Body {get; set;}
-		
-		public List<BlogTag> Tags {get; private set;}
+		public string BodyText {get; set;}
 		
 		/// <summary>
 		/// When user started editing
@@ -35,11 +33,13 @@ namespace Grod
 		
 		public BlogPost(){
 			Created = DateTime.Now;
-			Tags = new List<BlogTag>();
 		}
-		
-		public void AddTag(BlogTag tag){
-			if (!Tags.Contains(tag)) Tags.Add(tag);
-		}
+
+	    public string BodyHtml
+	    {
+	        get { var md = new MarkdownDeep.Markdown {ExtraMode = true};
+	            return md.Transform(BodyText);
+	        }
+	    }
 	}
 }
