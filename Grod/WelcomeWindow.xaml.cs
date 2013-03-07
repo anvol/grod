@@ -4,7 +4,6 @@
  * Date: 03/05/2013
  * Time: 21:13
  * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
 using System.Collections.Generic;
@@ -30,11 +29,8 @@ namespace Grod
 		
 		void btnNewPost_Click(object sender, RoutedEventArgs e)
 		{
-			var editor = new EditorWindow();
-			
-			editor.Owner = this;
-			editor.ShowActivated = true;
-			editor.Show();
+			var editor = new EditorWindow {Owner = this, ShowActivated = true};
+		    editor.Show();
 		}
 	}
 }

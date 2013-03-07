@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Grod
 {
@@ -17,7 +18,10 @@ namespace Grod
 		private string _originalText;
 		private string _markdownText;
 		private string _htmlText;
-		
+
+        [Key]
+        public Guid Id { get; private set; }
+
 		public string Title {get; set;}
 		public string BodyText {get; set;}
 		
@@ -33,6 +37,7 @@ namespace Grod
 		
 		public BlogPost(){
 			Created = DateTime.Now;
+            Id = Guid.NewGuid();
 		}
 
 	    public string BodyHtml
