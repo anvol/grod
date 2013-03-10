@@ -14,10 +14,7 @@ namespace Grod
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-    }
-
-    
+    }    
 }

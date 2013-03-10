@@ -15,10 +15,6 @@ namespace Grod
 	/// </summary>
 	public class BlogPost
 	{
-		private string _originalText;
-		private string _markdownText;
-		private string _htmlText;
-
         [Key]
         public Guid Id { get; private set; }
 
@@ -37,7 +33,8 @@ namespace Grod
 		
 		public BlogPost(){
 			Created = DateTime.Now;
-            Id = Guid.NewGuid();
+            Posted = DateTime.Now;
+			Id = Guid.NewGuid();            
 		}
 
 	    public string BodyHtml
