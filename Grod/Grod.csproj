@@ -98,8 +98,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GrodDbContext.cs" />
+    <Compile Include="HtmlHelper.cs" />
+    <Compile Include="PreviewWindow.xaml.cs">
+      <DependentUpon>PreviewWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
+    <Compile Include="Template.cs" />
     <Compile Include="TestBlogPost.cs" />
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
@@ -109,10 +115,37 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Themes\bootstrap\template.html" />
+    <None Include="Themes\bootstrap\assets\css\bootstrap-responsive.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\css\bootstrap-responsive.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\css\bootstrap.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\css\bootstrap.min.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\img\glyphicons-halflings-white.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\img\glyphicons-halflings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\js\bootstrap.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\assets\js\bootstrap.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Themes\bootstrap\template.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Page Include="EditorWindow.xaml" />
+    <Page Include="PreviewWindow.xaml" />
     <Page Include="WelcomeWindow.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +181,10 @@
   <ItemGroup>
     <Folder Include="Themes" />
     <Folder Include="Themes\bootstrap" />
+    <Folder Include="Themes\bootstrap\assets" />
+    <Folder Include="Themes\bootstrap\assets\css" />
+    <Folder Include="Themes\bootstrap\assets\img" />
+    <Folder Include="Themes\bootstrap\assets\js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

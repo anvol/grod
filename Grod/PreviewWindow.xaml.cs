@@ -1,8 +1,8 @@
 ﻿/*
  * Created by SharpDevelop.
  * User: Andrey
- * Date: 03/05/2013
- * Time: 21:20
+ * Date: 11.03.2013
+ * Time: 23:06
  */
 using System;
 using System.Collections.Generic;
@@ -17,23 +17,26 @@ using System.Windows.Media;
 namespace Grod
 {
 	/// <summary>
-	/// Interaction logic for EditorWindow.xaml
+	/// Interaction logic for PreviewWindow.xaml
 	/// </summary>
-	public partial class EditorWindow : Window
+	public partial class PreviewWindow : Window
 	{
-		BlogPost post;
-		
-		public EditorWindow(BlogPost post)
+		public PreviewWindow(string page)
 		{
 			InitializeComponent();
-			this.post = post;
-			this.DataContext = post;
+			
+			wbMain.NavigateToString(page);
 		}
 		
-		void ButtonPreview_Click(object sender, RoutedEventArgs e)
+		protected override void OnKeyUp(KeyEventArgs e)
 		{
-			var pw = new PreviewWindow(post.BodyHtml){Owner = this};
-			pw.ShowDialog();
+			if (e.Key == Key.Escape)
+			{
+				e.Handled = true;
+				this.Close();
+				return;
+			}
+			base.OnKeyUp(e);			
 		}
 	}
 }

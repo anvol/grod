@@ -29,8 +29,8 @@ namespace Grod
 		
 		void btnNewPost_Click(object sender, RoutedEventArgs e)
 		{
-			var editor = new EditorWindow {Owner = this, ShowActivated = true};
-		    editor.Show();
+			var editor = new EditorWindow(new BlogPost()) {Owner = this, ShowActivated = true};
+		    editor.ShowDialog();
 		}
 	}
 }
