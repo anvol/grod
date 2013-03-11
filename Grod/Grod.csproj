@@ -109,6 +109,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Themes\bootstrap\template.html" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="EditorWindow.xaml" />
@@ -143,6 +144,10 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Themes" />
+    <Folder Include="Themes\bootstrap" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
