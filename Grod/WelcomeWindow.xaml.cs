@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Linq;
 
 namespace Grod
 {
@@ -29,6 +30,17 @@ namespace Grod
 		
 		void btnNewPost_Click(object sender, RoutedEventArgs e)
 		{
+		    using (var db = new GrodDbContext())
+		    {
+		        for (int i = 0; i < 100; i++)
+		        {
+		            var post = new BlogPost() {Title = "Test " + i, BodyText = "Some body\r\n========\r\n\r\n - " + i};
+		            db.Posts.Add(post);
+		        }
+
+		        db.SaveChanges();
+		    }
+
 			var editor = new EditorWindow(new BlogPost()) {Owner = this, ShowActivated = true};
 		    editor.ShowDialog();
 		}
