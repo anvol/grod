@@ -12,18 +12,13 @@ namespace Grod
 {
 	public class Template
 	{
-		string _loadedTemplateFile;
-
-	    private string _listTemplate;
-	    private string _pageTemplate;
-	    private string _postTemplate;
-
+		string _loadedTemplate;
 		const string TEMPLATE_FOLDER = "Themes";
 		const string TEMPLATE_PATH = "{0}/{1}/template.html";
 			
 		public Template(string name)
 		{
-			_loadedTemplateFile = File.ReadAllText(String.Format(TEMPLATE_PATH, TEMPLATE_FOLDER, name));
+			_loadedTemplate = File.ReadAllText(String.Format(TEMPLATE_PATH, TEMPLATE_FOLDER, name));
 		}
 		
 		public static IEnumerable<string> GetThemesList()
