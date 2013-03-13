@@ -18,31 +18,34 @@ using System.Linq;
 
 namespace Grod
 {
-	/// <summary>
-	/// Interaction logic for WelcomeWindow.xaml
-	/// </summary>
-	public partial class WelcomeWindow : Window
-	{
-		public WelcomeWindow()
-		{
-			InitializeComponent();
-		}
-		
-		void btnNewPost_Click(object sender, RoutedEventArgs e)
-		{
-		    using (var db = new GrodDbContext())
-		    {
-		        for (int i = 0; i < 100; i++)
-		        {
-		            var post = new BlogPost() {Title = "Test " + i, BodyText = "Some body\r\n========\r\n\r\n - " + i};
-		            db.Posts.Add(post);
-		        }
+    /// <summary>
+    /// Interaction logic for WelcomeWindow.xaml
+    /// </summary>
+    public partial class WelcomeWindow : Window
+    {
+        private readonly GrodDbContext _context = new GrodDbContext();
+        private readonly BlogPostRepository _repo;
 
-		        db.SaveChanges();
-		    }
+        public WelcomeWindow()
+        {
+            InitializeComponent();
+            _repo = new BlogPostRepository(_context);
+            GridPosts.DataContext = _repo;
+        }
 
-			var editor = new EditorWindow(new BlogPost()) {Owner = this, ShowActivated = true};
-		    editor.ShowDialog();
-		}
-	}
+        void BtnNewPost_OnClick(object sender, RoutedEventArgs e)
+        {
+            var editor = new EditorWindow(new BlogPost()) { Owner = this, ShowActivated = true };
+            editor.ShowDialog();
+        }
+
+        void BtnGenerateSite_OnClick(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                _repo.AddPost(new BlogPost() { Title = "Test " + i, BodyText = "Hello test\r\n=========\r\n" + i });
+            }
+            _context.SaveChanges();
+        }
+    }
 }

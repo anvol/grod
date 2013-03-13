@@ -93,12 +93,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BlogPost.cs" />
+    <Compile Include="BlogPostRepository.cs" />
     <Compile Include="EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GrodDbContext.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="IBlogPostRepository.cs" />
     <Compile Include="PreviewWindow.xaml.cs">
       <DependentUpon>PreviewWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
