@@ -5,7 +5,10 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" Title="Grod"
 	Height="600"
 	Width="800">
-	<Grid d:DataContext="{d:DesignInstance Grod:GrodDbContext}">
+    <Window.Resources>
+        <Grod:GrodDbContext x:Key="GrodDb" />
+    </Window.Resources>
+    <Grid d:DataContext="{d:DesignInstance Grod:GrodDbContext}" DataContext="{StaticResource GrodDb}">
 		<Button
 			Content="New Post"
 			Grid.Column="0"
@@ -18,10 +21,10 @@
 			Name="btnNewPost"
 			Click="btnNewPost_Click"
 			IsDefault="False"></Button>
-        <DataGrid HorizontalAlignment="Left" ItemsSource="{Binding Posts}" AutoGenerateColumns="False" Margin="10,10,0,0" VerticalAlignment="Top" Height="550" Width="567">
+        <DataGrid HorizontalAlignment="Left" ItemsSource="{Binding LoadedPosts}" Margin="10,10,0,0" VerticalAlignment="Top" Height="550" Width="567" GridLinesVisibility="Horizontal">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Created" Binding="{Binding Created}" />
-                <DataGridTextColumn Header="Post Title" Binding="{Binding Title}" />
+                <DataGridTextColumn Header="Post Title" Binding="{Binding Title}" Width="auto" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
