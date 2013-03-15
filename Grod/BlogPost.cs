@@ -20,11 +20,12 @@ namespace Grod
 
 		public string Title {get; set;}
 		public string BodyText {get; set;}
-		
-		/// <summary>
+        public string ShortUrl { get; set; }
+
+	    /// <summary>
 		/// When user started editing
 		/// </summary>
-		public DateTime Created{get;private set;}
+		public DateTime Created{get; private set;}
 		
 		/// <summary>
 		/// When published. Can be changed by user
@@ -34,7 +35,7 @@ namespace Grod
 		public BlogPost(){
 			Created = DateTime.Now;
             Posted = DateTime.Now;
-			Id = Guid.NewGuid();            
+			Id = Guid.NewGuid();
 		}
 
 	    public string BodyHtml
