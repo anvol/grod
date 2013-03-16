@@ -58,9 +58,9 @@ namespace Grod
 		public void TestBlockFromObject()
 		{
 			var blog = new Blog("test title", "hello world");
-			
 			var block = TemplateBlock.FromObject(blog);
 			
+			Assert.AreEqual("Blog", block.Name);
 			Assert.AreEqual(blog.Title, block.GetValue("Title"));
 			Assert.AreEqual(blog.Description, block.GetValue("Description"));
 		}
