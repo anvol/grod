@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Grod
 {
@@ -43,6 +44,31 @@ namespace Grod
 		public virtual TemplateBlock AddValue(string propertieName, string propertieValue){
 			props.Add(propertieName.ToLower(), propertieValue);
 			return this;
+		}
+		
+		public static TemplateBlock FromObject(object o)
+		{
+			Type t = o.GetType();			
+			
+			var classAttrs = (BlockValueAttribute)t.GetCustomAttributes(typeof(BlockValueAttribute), false).FirstOrDefault();
+			
+			if (classAttrs == null) throw new ArgumentException("Object not marked with BlockValueAttribute");
+			var block = new TemplateBlock(classAttrs.Name);
+			
+		    var props = t.GetProperties();
+		    foreach (var prop in props)
+		    {
+		        var propattr = prop.GetCustomAttributes(typeof(BlockValueAttribute), false);
+		        object attr = propattr.FirstOrDefault();
+		        if (attr == null) continue;
+		
+		        var myattr = (BlockValueAttribute)attr;
+		        var value = Convert.ToString(prop.GetValue(o, null));
+		        
+				block.AddValue(myattr.Name, value);
+		    }
+	
+		    return block;
 		}
 	}
 }

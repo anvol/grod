@@ -53,5 +53,16 @@ namespace Grod
 			output = TemplateHelper.ReplaceTagWithData(template, block);
 			Assert.AreEqual(title, output);
 		}
+	
+		[Test]
+		public void TestBlockFromObject()
+		{
+			var blog = new Blog("test title", "hello world");
+			
+			var block = TemplateBlock.FromObject(blog);
+			
+			Assert.AreEqual(blog.Title, block.GetValue("Title"));
+			Assert.AreEqual(blog.Description, block.GetValue("Description"));
+		}
 	}
 }

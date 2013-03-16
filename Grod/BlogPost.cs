@@ -13,23 +13,31 @@ namespace Grod
 	/// <summary>
 	/// Description of BlogPost.
 	/// </summary>
+	[BlockValue("Post")]
 	public class BlogPost
 	{
         [Key]
         public Guid Id { get; private set; }
 
+        [BlockValue("Title")]
 		public string Title {get; set;}
+		
+		[BlockValue("Body")]
 		public string BodyText {get; set;}
-        public string ShortUrl { get; set; }
+        
+		[BlockValue("ShortUrl")]
+		public string ShortUrl { get; set; }
 
 	    /// <summary>
 		/// When user started editing
 		/// </summary>
+		[BlockValue("Created")]
 		public DateTime Created{get; private set;}
 		
 		/// <summary>
 		/// When published. Can be changed by user
 		/// </summary>
+		[BlockValue("Posted")]
 		public DateTime Posted{get; set;}
 		
 		public BlogPost(){

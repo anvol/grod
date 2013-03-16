@@ -92,6 +92,7 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BlockValueAttribute.cs" />
     <Compile Include="Blog.cs" />
     <Compile Include="BlogPageType.cs" />
     <Compile Include="BlogPost.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="HtmlHelper.cs" />
     <Compile Include="HtmlPage.cs" />
     <Compile Include="IBlogPostRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PreviewWindow.xaml.cs">
       <DependentUpon>PreviewWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -189,6 +191,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Migrations" />
     <Folder Include="Tests" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
