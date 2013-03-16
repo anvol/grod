@@ -11,21 +11,34 @@ namespace Grod
 {
 	public class PropertieBag
 	{
-		public PropertieBag(string blockName){
-			BlockName = blockName;
+		protected Dictionary<string, string> props;
+		protected HashSet<BlogPageType> validPageTypes;
+		
+		public virtual string Name {get; set;}
+		
+		public bool CanBeUsed(BlogPageType type)
+		{
+			return validPageTypes.Contains(type);
 		}
 		
-		public virtual string BlockName {get; set;}
+		public PropertieBag(string blockName){
+			validPageTypes = new HashSet<BlogPageType>();
+			Name = blockName;
+		}
 		
-		protected Dictionary<string, string> props;
+		public virtual PropertieBag AddPageType(BlogPageType type){
+			validPageTypes.Add(type);
+			return this;
+		}
 		
 		public virtual string GetValue(string propName){
 			if (props.ContainsKey(propName))return props[propName];
 			return "";
 		}
 		
-		public virtual void AddValue(string propertieName, string propertieValue){
+		public virtual PropertieBag AddValue(string propertieName, string propertieValue){
 			props.Add(propertieName, propertieValue);
+			return this;
 		}
 	}
 }
