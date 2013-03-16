@@ -5,6 +5,7 @@
  * Time: 12:37
  */
 using System;
+using System.Collections.Generic;
 
 namespace Grod
 {
@@ -22,6 +23,11 @@ namespace Grod
 			_template = template;
 		}
 		
-		
+		public IEnumerable<HtmlPage> GenerateBlogroll(IEnumerable<BlogPost> posts)
+		{
+			
+			
+			
+		}
 	}
 }
