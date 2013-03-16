@@ -13,7 +13,15 @@ namespace Grod
 	/// </summary>
 	public class HtmlPage
 	{
+		/// <summary>
+		/// Path where you should store the page
+		/// </summary>
+		/// <example>post-short-url</example>
 		public string RelativePath { get; private set; }
+		
+		/// <summary>
+		/// Html text of the page
+		/// </summary>
 		public string Text { get; private set; }
 		
 		public HtmlPage(string text, string path)

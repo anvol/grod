@@ -55,7 +55,7 @@ namespace Grod
 			
 			postTemplate = TemplateHelper.ReplaceTagWithData(postTemplate, post.GetTemplateBlock());
 			
-			return new HtmlPage(postTemplate, post.ShortUrl + "/index.html");
+			return new HtmlPage(postTemplate, post.ShortUrl);
 		}
 	}
 }

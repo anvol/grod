@@ -49,16 +49,23 @@ namespace Grod
             	              	ShortUrl = "test-"+i 
             	              });
             }
-            _context.SaveChanges();
+            //_context.SaveChanges();
+            
+            var blog = new Blog("Developer MD", "Demonstration");
+            
             var template = new Template("bootstrap");
             TemplateBlock block;
             List<TemplateBlock> blocks = new List<TemplateBlock>();
             
-            block = new TemplateBlock("Blog");
+            block = TemplateBlock.FromObject(blog);
             block.AddPageType(BlogPageType.Any);
-            
             blocks.Add(block);
-            // var engine = new TemplateEngine(
+            
+            var engine = new TemplateEngine(template, blocks);
+            
+            var htmlPages = engine.GenerateHtmlPosts(_repo.Posts);
+            
+            FileHelper.CreateFiles(template, htmlPages);
         }
     }
 }
