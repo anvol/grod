@@ -45,6 +45,19 @@ namespace Grod
 	        }
 	    }
 	    
+	    public TemplateBlock GetTemplateBlock(){
+	    	var block = new TemplateBlock("Post");
+	    	block.AddPageType(BlogPageType.Any);
+	    	block.AddValue("Title", Title);
+	    	block.AddValue("ShortUrl", ShortUrl);
+	    	string html = BodyHtml;
+	    	block.AddValue("Body", html);
+	    	block.AddValue("BodyShort", html);
+	    	block.AddValue("Posted", Posted.ToString("dd.MM.yy HH:mm"));
+	    	
+	    	return block;
+	    }
+	    
 	    #region Equals and GetHashCode implementation
 	    public override bool Equals(object obj)
 		{

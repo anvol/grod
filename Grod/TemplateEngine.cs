@@ -6,6 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Grod
 {
@@ -15,26 +16,46 @@ namespace Grod
 	public class TemplateEngine
 	{
 		protected Template _template;
-		protected Dictionary<string, PropertieBag> blocks;		
+		protected List<TemplateBlock> blocks;		
 		
-		public TemplateEngine(Template template, IEnumerable<PropertieBag> blocks){
+		public TemplateEngine(Template template, IEnumerable<TemplateBlock> blocks){
 			if (template == null)
 				throw new ArgumentNullException("template");
 			
 			_template = template;
-			this.blocks = new Dictionary<string, PropertieBag>();
-			foreach(var block in blocks) this.blocks.Add(block.Name, block);
+			this.blocks = new List<TemplateBlock>();
+			this.blocks.AddRange(blocks);
 		}
 		
-		public IEnumerable<HtmlPage> GenerateBlogroll(IEnumerable<BlogPost> posts)
+		public IEnumerable<HtmlPage> GenerateBlogroll(string template, IEnumerable<BlogPost> posts)
 		{
 			List<HtmlPage> pages = new List<HtmlPage>();
 			int count = 0;
+			
 			foreach (var post in posts){
 				
 			}
 			
 			throw new NotImplementedException();
+		}
+		
+		public IEnumerable<HtmlPage> GenerateHtmlPosts(IEnumerable<BlogPost> posts)
+		{
+			// prepare template for post pages
+			string postTemplate = TemplateHelper.RemoveUnusedBlocks(_template.LoadedTemplate, blocks, BlogPageType.Post);
+			
+			foreach(var post in posts) yield return PostPage(postTemplate, post);
+		}
+		
+		private HtmlPage PostPage(string postTemplate, BlogPost post){
+			foreach(var block in blocks){
+				postTemplate = TemplateHelper.ReplaceTagWithData(postTemplate, block);
+				postTemplate = TemplateHelper.RemoveUsedBlockTags(postTemplate, blocks, BlogPageType.Post);
+			}
+			
+			postTemplate = TemplateHelper.ReplaceTagWithData(postTemplate, post.GetTemplateBlock());
+			
+			return new HtmlPage(postTemplate, post.ShortUrl + "/index.html");
 		}
 	}
 }
