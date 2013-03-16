@@ -92,6 +92,8 @@
       <SubType>Code</SubType>
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Blog.cs" />
+    <Compile Include="BlogPageType.cs" />
     <Compile Include="BlogPost.cs" />
     <Compile Include="BlogPostRepository.cs" />
     <Compile Include="EditorWindow.xaml.cs">
@@ -100,15 +102,21 @@
     </Compile>
     <Compile Include="GrodDbContext.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="HtmlPage.cs" />
     <Compile Include="IBlogPostRepository.cs" />
     <Compile Include="PreviewWindow.xaml.cs">
       <DependentUpon>PreviewWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PropertieBag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
     <Compile Include="Template.cs" />
-    <Compile Include="TestBlogPost.cs" />
+    <Compile Include="TemplateBlock.cs" />
+    <Compile Include="TemplateEngine.cs" />
+    <Compile Include="TemplateHelper.cs" />
+    <Compile Include="Tests\TestBlogPost.cs" />
+    <Compile Include="Tests\TestTemplateHelper.cs" />
     <Compile Include="WelcomeWindow.xaml.cs">
       <DependentUpon>WelcomeWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -180,6 +188,8 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Tests" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
