@@ -97,6 +97,7 @@
     <Compile Include="BlogPageType.cs" />
     <Compile Include="BlogPost.cs" />
     <Compile Include="BlogPostRepository.cs" />
+    <Compile Include="Blogroll.cs" />
     <Compile Include="EditorWindow.xaml.cs">
       <DependentUpon>EditorWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

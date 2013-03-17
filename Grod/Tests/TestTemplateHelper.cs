@@ -30,10 +30,10 @@ namespace Grod
 			
 			Assert.AreEqual(input, output, "TemplateHelper.RemoveUnusedBlocks is broken");
 			
-			input = "{test}Hello world!{/test}";
+			input = "{test}Hello world!{/test}asd";
 			output = TemplateHelper.RemoveUnusedBlocks(input, blocks, BlogPageType.Blogroll);
 			
-			Assert.AreEqual("", output, "TemplateHelper.RemoveUnusedBlocks is broken");
+			Assert.AreEqual("asd", output, "TemplateHelper.RemoveUnusedBlocks is broken");
 		}
 		
 		[Test]
@@ -63,6 +63,24 @@ namespace Grod
 			Assert.AreEqual("Blog", block.Name);
 			Assert.AreEqual(blog.Title, block.GetValue("Title"));
 			Assert.AreEqual(blog.Description, block.GetValue("Description"));
+		}
+		
+		[Test]
+		public void TestReplaceBlock()
+		{
+			string tpl = "Hey! {blogroll.loop}Test block{/blogroll.loop} test";
+			string output = TemplateHelper.ReplaceBlockWithData(tpl, "blogroll.loop", "This is");
+			
+			Assert.AreEqual("Hey! This is test", output);
+		}
+		
+		[Test]
+		public void TestGetBlock()
+		{
+			string tpl = "Hey! {blogroll.loop}Test block{/blogroll.loop} test";
+			string output = TemplateHelper.GetBlockText(tpl, "blogroll.loop");
+			
+			Assert.AreEqual("Test block", output);
 		}
 	}
 }

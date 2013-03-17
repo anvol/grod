@@ -25,7 +25,7 @@ namespace Grod
 		[BlockValue("Body")]
 		public string BodyText {get; set;}
         
-		[BlockValue("ShortUrl")]
+		[BlockValue("Url")]
 		public string ShortUrl { get; set; }
 
 	    /// <summary>

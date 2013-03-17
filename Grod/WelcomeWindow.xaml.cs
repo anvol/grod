@@ -41,12 +41,12 @@ namespace Grod
 
         void BtnGenerateSite_OnClick(object sender, RoutedEventArgs e)
         {        	
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 _repo.AddPost(new BlogPost() { 
             	              	Title = "Test " + i,
-            	              	BodyText = "Hello test\r\n=========\r\n" + i,
-            	              	ShortUrl = "test-"+i 
+            	              	BodyText = "Hello test " + i,
+            	              	ShortUrl = "test-"+i
             	              });
             }
             //_context.SaveChanges();
@@ -61,6 +61,9 @@ namespace Grod
             block.AddPageType(BlogPageType.Any);
             blocks.Add(block);
             
+            block = TemplateBlock.FromObject(new Blogroll());
+            block.AddPageType(BlogPageType.Blogroll);
+            blocks.Add(block);
             var engine = new TemplateEngine(template, blocks);
             
             var htmlPages = engine.GenerateHtmlPosts(_repo.Posts);

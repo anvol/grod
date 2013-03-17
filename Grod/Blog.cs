@@ -20,6 +20,9 @@ namespace Grod
         
         [BlockValue("Blogroll")]
         public string Blogroll { get; private set; }
+        
+        [BlockValue("Host")]
+        public string Host { get; set; }
 
         public Blog(string title, string description)
         {

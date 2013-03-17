@@ -43,13 +43,20 @@ namespace Grod
 		
 		public static string RemoveUsedBlockTags(string template, IEnumerable<TemplateBlock> blocks, BlogPageType type){
 			foreach (var block in blocks) {
-				if (!block.CanBeUsed(type)) continue;
-				string openTag = string.Format("{{{0}}}", block.Name);
-				string closeTag = string.Format("{{/{0}}}", block.Name);
-				
-				template = template.Replace(openTag, "");
-				template = template.Replace(closeTag, "");
+				template = RemoveUsedBlockTags(template, block, type);
 			}
+			
+			return template;
+		}
+		
+		public static string RemoveUsedBlockTags(string template, TemplateBlock block, BlogPageType type){
+			
+			if (!block.CanBeUsed(type)) return template;
+			string openTag = string.Format("{{{0}}}", block.Name);
+			string closeTag = string.Format("{{/{0}}}", block.Name);
+			
+			template = template.Replace(openTag, "");
+			template = template.Replace(closeTag, "");
 			
 			return template;
 		}
@@ -74,6 +81,42 @@ namespace Grod
 			}
 			
 			return sb.ToString();
+		}
+		
+		public static string Pagination(int totalPagesCount, int currentPage)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.AppendLine("<ul class=\"pagination\">");
+			
+			for (int i = 1; i <= totalPagesCount; i++) {
+				if (i==currentPage) {
+					sb.AppendLine("<li class=\"pagination-active-page\">"+i+"</li>");
+				} else {
+					sb.AppendLine("<li><a href=\"page-"+i+"\">"+i+"</a></li>");
+				}
+			}			
+			sb.AppendLine("</ul>");
+			return sb.ToString();
+		}
+		
+		public static string GetBlockText(string template, string blockName)
+		{
+			string openTag = string.Format("{{{0}}}", blockName);
+			string closeTag = string.Format("{{/{0}}}", blockName);
+			int start = template.IndexOf(openTag);
+			int end = template.IndexOf(closeTag, start);
+			start += openTag.Length;
+			return template.Substring(start, end-start);
+		}
+		
+		public static string ReplaceBlockWithData(string template, string blockName, string data)
+		{
+			string openTag = string.Format("{{{0}}}", blockName);
+			string closeTag = string.Format("{{/{0}}}", blockName);
+			int start = template.IndexOf(openTag);
+			int end = template.IndexOf(closeTag, start);
+			template = template.Remove(start, end - start + closeTag.Length);
+			return template.Insert(start, data);
 		}
 	}
 }
