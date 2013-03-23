@@ -61,6 +61,12 @@ namespace Grod
 			return template;
 		}
 		
+		/// <summary>
+		/// Replace tags of provided block with data containing in block.
+		/// </summary>
+		/// <param name="template">Template to midify</param>
+		/// <param name="block">Block with data</param>
+		/// <returns>new string contains data from block</returns>
 		public static string ReplaceTagWithData(string template, TemplateBlock block){
 			// Example: {Blog.Title}
 			StringBuilder sb = new StringBuilder(template);

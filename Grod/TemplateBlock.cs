@@ -46,6 +46,12 @@ namespace Grod
 			return this;
 		}
 		
+		public virtual TemplateBlock SetValue(string propertieName, string propertieValue){
+			if (props.ContainsKey(propertieName)) props[propertieName] = propertieValue;
+			else AddValue(propertieName, propertieValue);
+			return this;
+		}
+		
 		public static TemplateBlock FromObject(object o)
 		{
 			Type t = o.GetType();			

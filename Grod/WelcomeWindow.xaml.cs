@@ -66,6 +66,8 @@ namespace Grod
             blocks.Add(block);
             var engine = new TemplateEngine(template, blocks);
             
+            var htmlBlogroll = engine.GenerateBlogroll(_repo.Posts);
+            
             var htmlPages = engine.GenerateHtmlPosts(_repo.Posts);
             
             FileHelper.CreateFiles(template, htmlPages);
