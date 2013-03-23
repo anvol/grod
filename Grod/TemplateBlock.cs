@@ -47,8 +47,7 @@ namespace Grod
 		}
 		
 		public virtual TemplateBlock SetValue(string propertieName, string propertieValue){
-			if (props.ContainsKey(propertieName)) props[propertieName] = propertieValue;
-			else AddValue(propertieName, propertieValue);
+			props[propertieName.ToLower()] = propertieValue;
 			return this;
 		}
 		

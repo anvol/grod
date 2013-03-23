@@ -14,24 +14,21 @@ namespace Grod
 	{
 		const string PUBLISH_DIR = "Publish/";
 		
-		public static void CreateFiles(Template tpl, IEnumerable<HtmlPage> pages)
+		public static void CreateFiles(IEnumerable<HtmlPage> pages)
 		{
-			ClearPublishDir();
-			CopyAssets(tpl.AssetsPath);
-			
 			foreach (var page in pages) {
 				string path = PUBLISH_DIR + page.RelativePath;
 				Directory.CreateDirectory(path);
-				File.AppendAllText(path + "/index.html", page.Text);
+				File.WriteAllText(path + "/index.html", page.Text);				
 			}
 		}
 		
-		static void CopyAssets(string source)
+		public static void CopyAssets(string source)
 		{
 			DirectoryCopy(source, PUBLISH_DIR + "assets/", true);
 		}
 		
-		static void ClearPublishDir()
+		public static void ClearPublishDir()
 		{
 			if (Directory.Exists(PUBLISH_DIR)) Directory.Delete(PUBLISH_DIR, true);
 			Directory.CreateDirectory(PUBLISH_DIR);

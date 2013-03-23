@@ -89,16 +89,16 @@ namespace Grod
 			return sb.ToString();
 		}
 		
-		public static string Pagination(int totalPagesCount, int currentPage)
+		public static string Pagination(int totalPagesCount, int currentPage, string host)
 		{
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("<ul class=\"pagination\">");
 			
 			for (int i = 1; i <= totalPagesCount; i++) {
 				if (i==currentPage) {
-					sb.AppendLine("<li class=\"pagination-active-page\">"+i+"</li>");
+					sb.AppendLine("<li class=\"pagination-active-page\"><a>"+i+"</a></li>");
 				} else {
-					sb.AppendLine("<li><a href=\"page-"+i+"\">"+i+"</a></li>");
+					sb.AppendLine("<li><a href=\""+host+"page-"+i+"\">"+i+"</a></li>");
 				}
 			}			
 			sb.AppendLine("</ul>");

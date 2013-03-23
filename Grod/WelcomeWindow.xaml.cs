@@ -41,10 +41,10 @@ namespace Grod
 
         void BtnGenerateSite_OnClick(object sender, RoutedEventArgs e)
         {        	
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 25; i++)
             {
                 _repo.AddPost(new BlogPost() { 
-            	              	Title = "Test " + i,
+            	              	Title = "Test numero " + i,
             	              	BodyText = "Hello test " + i,
             	              	ShortUrl = "test-"+i
             	              });
@@ -64,13 +64,19 @@ namespace Grod
             block = TemplateBlock.FromObject(new Blogroll());
             block.AddPageType(BlogPageType.Blogroll);
             blocks.Add(block);
+                        
             var engine = new TemplateEngine(template, blocks);
+            
+            FileHelper.ClearPublishDir();
+            FileHelper.CopyAssets(template.AssetsPath);
             
             var htmlBlogroll = engine.GenerateBlogroll(_repo.Posts);
             
+            FileHelper.CreateFiles(htmlBlogroll);
+            
             var htmlPages = engine.GenerateHtmlPosts(_repo.Posts);
             
-            FileHelper.CreateFiles(template, htmlPages);
+            FileHelper.CreateFiles(htmlPages);
         }
     }
 }
